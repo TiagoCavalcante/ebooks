@@ -1,0 +1,92 @@
+/* reset the properties of all */
+* {
+	padding: 0;
+	margin: 0;
+}
+
+header {
+	background-color: black;
+}
+.header-content {
+	display: flex;
+
+	width: calc(100% - 20px);
+	max-width: 920px;
+	margin: 0 auto;
+	padding: 10px 10px;
+
+	/* makes items stand next to each other */
+	flex-direction: row;
+	/* makes items aligned in center of line (vertically) */
+	align-items: center;
+	/* makes a space between the items */
+	justify-content: space-between;
+}
+.header-content h1 a {
+	/* reset the properties of the link */
+	color: white;
+	text-decoration: none;
+}
+.name {
+	color: red;
+}
+.header-content .search-container {
+	display: flex;
+
+	/* makes items aligned in center of line (vertically), this is required because the property display and that she do isn't inherited */
+	flex-direction: row;
+	align-items: center;
+}
+.header-content .search-container .search-icon {
+	/* create a space between the icon ant the input */
+	margin-right: 5px;
+	/* the default is black */
+	color: white;
+}
+
+main {
+	display: flex;
+
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+
+	/* makes items stand next to each other */
+	flex-direction: row;
+	/* makes items aligned in center of line (vertically) */
+	align-items: center;
+	/* makes a space around the items: (s = space; i = items) siiis */
+	justify-content: space-around;
+	/* makes the items aren't in one line */
+	flex-wrap: wrap;
+}
+
+.product {
+	width: 100%;
+	max-width: 300px;
+	min-width: 33%;
+	margin: 10px 0;
+}
+
+footer {
+	padding: 10px;
+
+	background-color: black;
+}
+footer p {
+	color: white;
+	font-size: 1.2em;
+	/* align the text to center */
+	text-align: center;
+}
+
+@media (max-width: 560px) {
+	.header-content {
+		display: flex;
+		/* makes items stand one below other */
+		flex-direction: column;
+	}
+	.header-content h1 {
+		margin-bottom: 10px;
+	}
+}
