@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang='en'>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<title>e-books.com</title>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css">
+	<link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+	<link rel='stylesheet' href='css/style.css'>
 </head>
 <body>
 	<?php require_once 'utils/header.html'?>

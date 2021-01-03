@@ -1,6 +1,7 @@
 # ebooks
-A template of a ebook store
+A template of a ebook store using PHP
 
+## before run
 Before you initialize the server you need to initialize the MySQL and execute the commands below:
 ```sql
 DROP DATABASE IF EXISTS bookstore;
@@ -15,3 +16,6 @@ CREATE TABLE books (
 );
 ```
 And after this add the books.
+
+## run
+Execute the following command: `cd src && php -S localhost:80`
