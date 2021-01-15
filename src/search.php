@@ -12,28 +12,30 @@
 
 	<main>
 		<?php
-			require_once 'api.php';
+			require_once '../vendor/autoload.php';
 
-			$conn = new Connection('localhost', 'root', '', 'bookstore');
-			$name = (isset($_GET['name'])) ? $conn->prevent($_GET['name']) : "";
-			$result = $conn->select("books", "id, name, price, SUBSTRING(description, 1, 75)", "name LIKE '%$name%'");
-			if ($conn->numRows($result)) {
-				while ($dataResult = $conn->nextResult($result)) {
-					echo "<div class='product'>";
-					echo "<p><strong>" . $dataResult['name'] . "</strong></p>";
-					echo "<p><strong>Price:</strong> " . number_format($dataResult['price'], 2, ',', '.') . "$</p>";
+			$connection = new Connection\Connection();
+
+			$name = isset($_GET['name']) ? $_GET['name'] : '';
+			$results = $connection->select('books', ['id', 'name', 'price', 'SUBSTRING(description, 1, 75)'], [['LIKE', 'name', "%$name%"]]);
+			if (count($results)) {
+				foreach ($results as $result) {
+					echo '<div class="product">';
+					echo "<p><strong>{$result['name']}</strong></p>";
+					echo '<p><strong>Price:</strong> ' . number_format($result['price'], 2, ',', '.') . '$</p>';
 					# to the last word not be incomplete
-					$word = explode(" ", $dataResult['SUBSTRING(description, 1, 75)']);
+					$word = explode(' ', $result['SUBSTRING(description, 1, 75)']);
 					array_pop($word);
-					echo "<p>" . implode(" ", $word) . " ..." . "</p>";
-					echo "<a href='product.php?id=" . $dataResult['id'] . "'>See more</a>";
-					echo "</div>";
+					echo '<p>' . implode(' ', $word) . ' ...</p>';
+					echo "<a href='product.php?id={$result['id']}'>See more</a>";
+					echo '</div>';
 				}
 			}
 			else {
 				echo "<h1>404</h1><p>Sorry any book was find \u{1F614}</p>";
 			}
-			$conn->close();
+
+			$connection->close();
 		?>
 	</main>
 
