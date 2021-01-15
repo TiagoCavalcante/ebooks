@@ -1,17 +1,15 @@
 <?
-	require_once 'api.php';
+	require_once '../vendor/autoload.php';
 
-	$conn = new Connection('localhost', 'root', '', 'bookstore');
-	$id = (isset($_GET['id'])) ? $conn->prevent($_GET['id']) : null;
+	$connection = new Connection\Connection();
+	$id = isset($_GET['id']) ? intval($_GET['id']) : -1;
 	
-	$result = $conn->select("books", "name, price, description", "id = '$id'");
-	$dataResult = $conn->nextResult($result);
-	if (gettype($dataResult) != "boolean") {
-		$name = $dataResult['name'];
-	}
-	else {
-		$name = '404';
-	}
+	$result = $connection->select('books', ['name', 'price', 'description'], [['=', 'id', $id]]);
+
+	$result = count($result) ? $result[0] : null;
+	$name = ($result == null) ? '404' : $result['name'];
+
+	$connection->close();
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -27,16 +25,15 @@
 
 	<main>
 		<?php
-			if ($id != null && $dataResult != false) {
+			if ($id != -1 && $result != null) {
 				echo "<h1><strong>$name</strong></h1>";
-				echo "<p><strong>Price:</strong> " . number_format($dataResult['price'], 2, ',', '.') . "$</p>";
-				echo "<p>" . $dataResult['description'] . "</p>";
-				echo "</div>";
+				echo '<p><strong>Price:</strong> ' . number_format($result['price'], 2, ',', '.') . '$</p>';
+				echo "<p>{$result['description']}</p>";
+				echo '</div>';
 			}
 			else {
 				echo "<h1>404</h1><p>Sorry we didn't find this page \u{1F614}</p>";
 			}
-			$conn->close();
 		?>
 	</main>
 
