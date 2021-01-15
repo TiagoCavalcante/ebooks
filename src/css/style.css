@@ -1,5 +1,4 @@
-/* reset the properties of all */
-* {
+body {
 	padding: 0;
 	margin: 0;
 }
