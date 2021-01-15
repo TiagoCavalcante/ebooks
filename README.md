@@ -17,5 +17,5 @@ CREATE TABLE books (
 ```
 And after this add the books.
 
-## run
+## how to run
 Execute the following command: `cd src && php -S localhost:80`
