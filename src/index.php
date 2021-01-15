@@ -12,21 +12,22 @@
 
 	<main calss='main-content'>
 		<?php
-			require_once 'api.php';
+			require_once '../vendor/autoload.php';
 
-			$conn = new Connection('localhost', 'root', '', 'bookstore');
-			$result = $conn->select("books", "id, name, price, SUBSTRING(description, 1, 75)");
-			while ($res = $result->fetch_assoc()) {
-				echo "<div class='product'>";
-				echo "<p><strong>" . $res['name'] . "</strong></p>";
-				echo "<p><strong>Price:</strong> $ " . number_format($res['price'], 2, ',', '.') . "</p>";
-				$word = explode(" ", $res['SUBSTRING(description, 1, 75)']);
+			$connection = new Connection\Connection();
+
+			foreach ($connection->select('books', ['id', 'name', 'price', 'SUBSTRING(description, 1, 75)']) as $result) {
+				echo '<div class="product">';
+				echo "<p><strong>{$result['name']}</strong></p>";
+				echo '<p><strong>Price:</strong> $ ' . number_format($result['price'], 2, ',', '.') . '</p>';
+				$word = explode(' ', $result['SUBSTRING(description, 1, 75)']);
 				array_pop($word);
-				echo "<p>" . implode(" ", $word) . " ..." . "</p>";
-				echo "<a href='product.php?id=" . $res['id'] . "'>See more</a>";
-				echo "</div>";
+				echo '<p>' . implode(' ', $word) . ' ...</p>';
+				echo "<a href='product.php?id={$result['id']}'>See more</a>";
+				echo '</div>';
 			}
-			$conn->close();
+
+			$connection->close();
 		?>
 	</main>
 
