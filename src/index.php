@@ -12,11 +12,16 @@
 
 	<main calss='main-content'>
 		<?php
+			require_once '../env.php';
 			require_once '../vendor/autoload.php';
 
 			$connection = new Connection\Connection();
 
-			foreach ($connection->select('books', ['id', 'name', 'price', 'SUBSTRING(description, 1, 75)']) as $result) {
+			$results = $connection->table('books')
+				->select()
+				->what('id', 'name', 'price', 'SUBSTRING(description, 1, 75)')->run();
+
+			foreach ($results as $result) {
 				echo '<div class="product">';
 				echo "<p><strong>{$result['name']}</strong></p>";
 				echo '<p><strong>Price:</strong> $ ' . number_format($result['price'], 2, ',', '.') . '</p>';
