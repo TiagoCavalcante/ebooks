@@ -1,5 +1,5 @@
 {
     "require": {
-        "connection/connection": "^2.0"
+        "connection/connection": "^3.2"
     }
 }
