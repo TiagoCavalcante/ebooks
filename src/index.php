@@ -23,14 +23,21 @@
 				->run();
 
 			foreach ($results as $result) {
-				echo '<div class="product">';
-				echo "<p><strong>{$result['name']}</strong></p>";
-				echo '<p><strong>Price:</strong> $ ' . number_format($result['price'], 2, ',', '.') . '</p>';
-				$word = explode(' ', $result['SUBSTRING(description, 1, 75)']);
-				array_pop($word);
-				echo '<p>' . implode(' ', $word) . ' ...</p>';
-				echo "<a href='product.php?id={$result['id']}'>See more</a>";
-				echo '</div>';
+				$price = number_format($result['price'], 2, ',', '.');
+				# to the last word not be incomplete
+				$phrase = explode(' ', $result['SUBSTRING(description, 1, 75)']);
+				array_pop($phrase);
+				$phrase = implode(' ', $phrase);
+				echo "
+					<div class='product'>
+						<p><strong>{$result['name']}</strong></p>
+						<p><strong>Price:</strong> $ $price</p>
+						<p>$phrase ...</p>
+						<a href='product.php?id={$result['id']}'>
+							See more
+						</a>
+					</div>
+				";
 			}
 
 			$connection->close();
