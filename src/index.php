@@ -19,7 +19,8 @@
 
 			$results = $connection->table('books')
 				->select()
-				->what('id', 'name', 'price', 'SUBSTRING(description, 1, 75)')->run();
+				->what('id', 'name', 'price', 'SUBSTRING(description, 1, 75)')
+				->run();
 
 			foreach ($results as $result) {
 				echo '<div class="product">';
