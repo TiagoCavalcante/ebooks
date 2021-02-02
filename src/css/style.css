@@ -79,6 +79,11 @@ footer p {
 	text-align: center;
 }
 
+.break_line_form input, .break_line_form textarea {
+	width: 400px;
+	display: block;
+}
+
 @media (max-width: 560px) {
 	.header-content {
 		display: flex;
