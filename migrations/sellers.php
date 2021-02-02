@@ -16,14 +16,14 @@
 	if (isset($argv[1])) {
 		$hash = $argv[2];
 
-		for ($i = 0; $i < getenv('rounds'); $i++) {
+		for ($i = 0; $i < (int) getenv('rounds'); $i++) {
 			$hash = hash('sha512', getenv('passphrase') . $hash);
 		}
 
 		$connection->table('sellers')
 			->insert()
 			->what('name', 'password')
-			->values($argv[1], $argv[2])
+			->values($argv[1], $hash)
 			->run();
 	}
 
