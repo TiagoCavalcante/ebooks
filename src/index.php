@@ -10,7 +10,7 @@
 <body>
 	<?php require_once 'utils/header.html'?>
 
-	<main calss='main-content'>
+	<main>
 		<?php
 			require_once '../env.php';
 			require_once '../vendor/autoload.php';
