@@ -6,15 +6,15 @@ Before run you need to:
 * create the file `env.php` with the `envs` *name*, *database*, *host*, *port*, *user*, *password*, *rounds* and *passphrase*, e.g.:
   ```php
   <?php
-  	putenv('name=MariaDB');
-  	putenv('database=tests');
-  	putenv('host=localhost');
-  	putenv('port=3306');
-  	putenv('user=root');
-  	putenv('password=');
+    putenv('name=MariaDB');
+    putenv('database=tests');
+    putenv('host=localhost');
+    putenv('port=3306');
+    putenv('user=root');
+    putenv('password=');
   
-  	putenv('rounds=2');
-  	putenv('passphrase=longpassphrase');
+    putenv('rounds=2');
+    putenv('passphrase=longpassphrase');
   ?>
   ```
 * run the following command: `php migrations/books.php`
